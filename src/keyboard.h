@@ -2,10 +2,9 @@
 #define KEYBOARD_H
 
 // section 2.3 chip8 reference 
-#include "config.h"
 #include <stdbool.h>
 struct keyboard{
-    bool key_array[KEY_NUM];
+    bool key_array[16];
     char* virtual_keys;
 };
 

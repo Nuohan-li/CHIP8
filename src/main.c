@@ -6,7 +6,7 @@
 #include "keyboard.h"
 
 // these are physical keyboard keys, their index is mapped to chip8 virtual keys e.g 0x00 at index 0 is mapped to 1 for chip8 key
-const char virtual_keys[KEY_NUM] = {SDLK_0, SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5, SDLK_6, SDLK_7, SDLK_8, 
+const char virtual_keys[16] = {SDLK_0, SDLK_1, SDLK_2, SDLK_3, SDLK_4, SDLK_5, SDLK_6, SDLK_7, SDLK_8, 
                                 SDLK_9, SDLK_a, SDLK_b, SDLK_c, SDLK_d, SDLK_e, SDLK_f};
 
 int main(int argc, char **argv){
@@ -48,7 +48,7 @@ int main(int argc, char **argv){
     // initialize SDL
     SDL_Init(SDL_INIT_EVERYTHING);
     // creating the window
-    SDL_Window* window = SDL_CreateWindow(EMULATOR_TITLE, SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, WIDTH * WINDOW_SCALE, HEIGHT * WINDOW_SCALE, SDL_WINDOW_SHOWN);
+    SDL_Window* window = SDL_CreateWindow("CHIP-8 EMULATOR", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 640, 320, SDL_WINDOW_SHOWN);
 
     SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, SDL_TEXTUREACCESS_TARGET);
     while(1){
@@ -81,15 +81,15 @@ int main(int argc, char **argv){
         SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
         SDL_RenderClear(renderer);
         SDL_SetRenderDrawColor(renderer, 255, 255, 255, 255);
-        for(int x = 0; x < WIDTH; x++){
-            for(int y = 0; y < HEIGHT; y++){
+        for(int x = 0; x < 64; x++){
+            for(int y = 0; y < 32; y++){
                 
                 if(is_screen_set(&chip8.screen, x, y)){
                     SDL_Rect r;
-                    r.x = x * WINDOW_SCALE; // since we are scaling everything up by 10 times, so every 10 pixels are 1 pixel for the emulation
-                    r.y = y * WINDOW_SCALE;
-                    r.w = WINDOW_SCALE;
-                    r.h = WINDOW_SCALE;
+                    r.x = x * 10; // since we are scaling everything up by 10 times, so every 10 pixels are 1 pixel for the emulation
+                    r.y = y * 10;
+                    r.w = 10;
+                    r.h = 10;
                     SDL_RenderFillRect(renderer, &r);
                 }
             }

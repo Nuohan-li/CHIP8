@@ -1,9 +1,8 @@
 #ifndef MEMORY_H
 #define MEMORY_H
 
-#include "config.h"
 struct memory{
-    unsigned char memory_array[MEMORY_SIZE];
+    unsigned char memory_array[4096];
 };
 
 void memory_set(struct memory* mem, int index, unsigned char value);

@@ -1,9 +1,8 @@
 #include <assert.h>
 #include "memory.h"
-#include "config.h"
 
 static void out_of_bound(int index){
-    assert(index >= 0 && index < MEMORY_SIZE);
+    assert(index >= 0 && index < 4096);
 }
 
 void memory_set(struct memory* mem, int index, unsigned char value){

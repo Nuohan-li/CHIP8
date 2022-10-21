@@ -3,7 +3,7 @@
 #include <assert.h>
 
 static void out_of_bound(struct chip8* chip8){
-    assert(chip8->reg.stack_pointer < STACK_SIZE);
+    assert(chip8->reg.stack_pointer < 16);
 }
 
 void push(struct chip8* chip8, unsigned short value){

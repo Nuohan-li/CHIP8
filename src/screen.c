@@ -3,7 +3,7 @@
 #include <string.h>
 
 void screen_out_of_bound(int x, int y){
-    assert(x >= 0 && x < WIDTH && y >= 0 && y < HEIGHT );
+    assert(x >= 0 && x < 64 && y >= 0 && y < 32 );
 }
 
 void screen_set(struct screen* screen, int x, int y){
@@ -31,11 +31,11 @@ bool draw_sprite(struct screen* screen, int x, int y, const char* sprite_ptr, in
             // so if at position lx = 2, we got a non-zero result, we then have to draw pixel at x and x+2 and so on.
             // modulo used to make sure the sprite wraps around the screen, meaning that if we go off bound, then the other part of sprit
             // shows up at x or y = 0. e.g 
-            if(screen->pixels_array[(ly+y) % HEIGHT][(lx+x) % WIDTH]){
+            if(screen->pixels_array[(ly+y) % 32][(lx+x) % 64]){
                 sprite_collision  = true;
             }
             // we use XOR = true -> required from technical reference, if this causes any pixels to be erased Vf should be set to 1, 0 otherwise
-            screen->pixels_array[(ly+y) % HEIGHT][(lx+x) % WIDTH] ^= true;
+            screen->pixels_array[(ly+y) % 32][(lx+x) % 64] ^= true;
         }
     }
 

@@ -2,11 +2,10 @@
 #define SCREEN_H
 
 #include <stdbool.h>
-#include "config.h"
 
 // a 2d array representing the 
 struct screen{
-    bool pixels_array[HEIGHT][WIDTH];
+    bool pixels_array[32][64];
 };
 
 void clear(struct screen* screen);

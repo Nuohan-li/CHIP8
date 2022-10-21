@@ -1,10 +1,9 @@
 #ifndef REGISTERS_H
 #define REGISTERS_H
 
-#include "config.h"
 struct registers{
     // one char in C is 1 byte = 8 bit 
-    unsigned char V[REGISTER_NUM];
+    unsigned char V[16];
     // special 16 bit register in chip-8, used to store memory address
     unsigned short I;
     // see section 2.5 reference

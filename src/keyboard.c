@@ -6,7 +6,7 @@ void key_out_of_bound(int key){
 }
 // map is an array of virtual keys that will be used by chip8, key is the actual key we press down on the physical keyboard
 int key_map(struct keyboard* board, char key){
-    for(int i = 0; i < KEY_NUM; i++){
+    for(int i = 0; i < 16; i++){
         if(board->virtual_keys[i] == key){
             return i;
         }

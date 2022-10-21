@@ -33,11 +33,11 @@ void init(struct chip8* chip8){
 }
 void load(struct chip8* chip8, const char* buffer, size_t size){
     // making sure we are not going out of bound -> program load area starts from 0x200
-    assert(size + PROGRAM_LOAD_ADDR < MEMORY_SIZE);
+    assert(size + 0x200 < 4096);
     // loading the program into the memory, buffer is the source
-    memcpy(&chip8->mem.memory_array[PROGRAM_LOAD_ADDR], buffer, size);
+    memcpy(&chip8->mem.memory_array[0x200], buffer, size);
     // have program counter point to the beginning of the intructions, which is 0x200
-    chip8->reg.program_counter = PROGRAM_LOAD_ADDR;
+    chip8->reg.program_counter = 0x200;
 }
 char wait_for_key_press(struct chip8* chip8){
     SDL_Event event;
